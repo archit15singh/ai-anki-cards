@@ -117,6 +117,7 @@ The tags should align with **common coding interview problem patterns** and help
 3. **Optimization & Variants** - Does this problem involve a common optimization or variation? (e.g., Memoization, Bitmasking, Prefix Sum, Kadane’s Algorithm)
 4. **Problem Type** - What kind of problem is this structurally? (e.g., Subsets, Intervals, Palindromes, Graph Paths)
 5. **Complexity Insight** *(optional if significant)* - Are there important complexity considerations? (e.g., O(n log n) for sorting-based approaches)
+6. easy, medium, hard or others
 
 ### **Output Format:**
 Provide a JSON object with the most relevant tags, following a **minimalist but effective** format.
