@@ -52,6 +52,7 @@ Approach:
 Goal: I don't just want to solve the problem—I want to develop a mindset that allows me to recognize similar problems, intuitively recall the right approaches, and refine solutions with confidence.
 
 **answer concisely, reduce redundancy**
+**include memory aids, and pseudcode**
 
 # coding problem statement
 {}
