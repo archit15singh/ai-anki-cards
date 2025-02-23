@@ -24,6 +24,11 @@ def fetch_openai_response(prompt, response_format=None):
 def generate():
     with open("problem_statement.txt", "r", encoding="utf-8") as f:
         problem_statement = f.read()
+    
+    if not problem_statement.strip():
+        e = "Error: empty problem statement file"
+        print(e)
+        return e, e, e
 
     try:
         rephrase_prompt_template = """
