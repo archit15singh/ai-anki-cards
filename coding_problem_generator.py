@@ -45,6 +45,12 @@ Explain why this solution even works, the core idea behind it, and how each step
 Provide a clear step-by-step breakdown, along with code examples, to illustrate the approach effectively.
 Additionally, include strategies on how to recognize similar problems and master this concept over time.
 
+Start with a Brute Force Approach: Develop a simple, correct solution as a baseline, even if it's inefficient.
+Identify Inefficiencies: Analyze the solution to find performance bottlenecks.
+Incrementally Optimize: Replace inefficient parts with more efficient algorithms or data structures
+Explain Each Change: Provide a brief rationale for each optimization, focusing on performance improvements.
+Iterate Until Optimal: Continue refining until the solution is as efficient as possible.
+
 # coding problem statement
 {}
 """
