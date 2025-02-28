@@ -38,26 +38,12 @@ this is a coding problem statement, rephrase and reformat it properly without mi
 {}
 """
         explanation_prompt_template = """
-I will provide a coding problem, and I want you to guide me through the most effective thought process for solving it.
-Focus on building deep problem-solving intuition, ensuring that I understand why each step is taken, not just how to implement it.
-
-Approach:
-1. Decompose the problem conceptually - Identify its type, underlying patterns, and constraints before jumping into a solution.
-2. Develop a structured approach - Walk me through a logical step-by-step breakdown, ensuring clarity at each stage.
-3. Progressively refine solutions:
-    - Naive approach - The simplest, most intuitive solution (even if inefficient).
-    - Intermediate optimization - Identifying inefficiencies and improving step by step.
-    - Optimal approach - Arriving at the most efficient solution while maintaining clarity and simplicity.
-4. Emphasize thought frameworks - Guide me using:
-    - Pattern recognition - Relating this problem to broader classes of problems.
-    - Meta-thinking - Teaching how to break down, analyze, and reason about problems in general.
-    - Chain-of-thought reasoning - Explaining the rationale behind each step, avoiding leaps in logic.
-5. Provide heuristics & generalizable insights - Help me internalize problem-solving strategies that can be applied to other problems, not just this one.
-
-Goal: I don't just want to solve the problem—I want to develop a mindset that allows me to recognize similar problems, intuitively recall the right approaches, and refine solutions with confidence.
-
-**answer concisely, reduce redundancy**
-**include memory aids, and pseudcode**
+Explain the solution, thought process, and intuition behind this concept in a way that helps me recognize patterns and deeply understand the underlying principles.
+I want to develop strong intuition and problem-solving skills to apply this knowledge across different scenarios.  
+However, don't just use words and assume I already understand them—break it down thoroughly.
+Explain why this solution even works, the core idea behind it, and how each step connects.
+Provide a clear step-by-step breakdown, along with code examples, to illustrate the approach effectively.
+Additionally, include strategies on how to recognize similar problems and master this concept over time.
 
 # coding problem statement
 {}
