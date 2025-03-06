@@ -11,9 +11,9 @@ api_key = os.getenv("OPENAI_API_KEY")
 client = openai.OpenAI(api_key=api_key)
 
 
-def fetch_openai_response(prompt, response_format=None):
+def fetch_openai_response(prompt, model, response_format=None):
     response = client.chat.completions.create(
-        model="gpt-4o",
+        model=model,
         messages=[{"role": "user", "content": prompt}],
         response_format=response_format,
     )
@@ -86,20 +86,20 @@ The tags should always use pythonic format, for example, two_pointers
         tags_prompt = tags_prompt_template.format(problem_statement)
 
         print("\n========== Generating Rephrased Question ==========")
-        rephrased_response = fetch_openai_response(rephrase_prompt)
+        rephrased_response = fetch_openai_response(rephrase_prompt, "gpt-4o-mini")
         print("\n[Rephrased-Question]\n")
         print(rephrased_response)
         print("\n============================================================")
 
         print("\n========== Generating Problem-Solving Explanation ==========")
-        explanation_response = fetch_openai_response(explanation_prompt)
+        explanation_response = fetch_openai_response(explanation_prompt, "gpt-4o")
         print("\n[Problem-Solving Explanation]\n")
         print(explanation_response)
         print("\n============================================================")
 
         print("\n========== Generating Anki Flashcard Tags ==========")
         tags_response = fetch_openai_response(
-            tags_prompt, response_format={"type": "json_object"}
+            tags_prompt, "gpt-4o-mini", response_format={"type": "json_object"}
         )
         tags_response = json.loads(tags_response)["tags"]
         print("\n[Anki Flashcard Tags]\n")

@@ -1,7 +1,10 @@
+import time
 import requests
 import os
 from dotenv import load_dotenv
 import openai
+import concurrent.futures
+
 
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
@@ -657,28 +660,49 @@ def create_anki_flashcard(deck_name, front, back, api_url=ANKI_API_URL):
 
 
 def process(question):
+    start = time.time()
 
+    print(f"\nProcessing question: {question}")
     print("\n========== writing question ==========")
     front = rephrase_question(question)
     print("\n[written question]\n", front)
 
     print("\n========== generating solution ==========")
     back = generate_solution(question)
-    print("\n[generate solution]\n", back)
+    print("\n[generated solution]\n", back)
 
     DECK_NAME = "master dsa"
     create_anki_flashcard(DECK_NAME, front=front, back=back)
 
+    end = time.time()
+    print(f"Processing of question '{question}' took {end - start:.2f} seconds\n")
+
 
 if __name__ == "__main__":
-    total = sum(
-        len(problems) for problems in master_dsa.values()
-    )  # Total number of problems
+    total = sum(len(problems) for problems in master_dsa.values())
     current_index = 1
 
-    for ds, problems in master_dsa.items():
-        for problem in problems:
-            print(f"Processing {current_index} out of {total}")  # Print progress
-            question = f"{ds}: {problem}"
-            process(question)
-            current_index += 1  # Increment index
+    # Dynamically set the maximum number of threads for I/O-bound tasks
+    max_workers = (os.cpu_count() or 1) * 5
+
+    overall_start = time.time()  # Start overall timing
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = []
+        for ds, problems in master_dsa.items():
+            for problem in problems:
+                print(f"Scheduling processing for {current_index} out of {total}")
+                question = f"{ds}: {problem}"
+                # Submit the process function for concurrent execution
+                futures.append(executor.submit(process, question))
+                current_index += 1
+
+        # Wait for all tasks to complete and handle exceptions if any
+        for future in concurrent.futures.as_completed(futures):
+            try:
+                future.result()  # This will re-raise any exceptions caught during execution
+            except Exception as e:
+                print(f"Task generated an exception: {e}")
+
+    overall_end = time.time()  # End overall timing
+    print(f"\nTotal time taken: {overall_end - overall_start:.2f} seconds")
