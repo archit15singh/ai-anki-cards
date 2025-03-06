@@ -1,4 +1,3 @@
-
 import requests
 import json
 import os
@@ -14,7 +13,7 @@ client = openai.OpenAI(api_key=api_key)
 
 def fetch_openai_response(prompt, response_format=None):
     response = client.chat.completions.create(
-        model="gpt-4o-2024-08-06",
+        model="gpt-4o",
         messages=[{"role": "user", "content": prompt}],
         response_format=response_format,
     )
@@ -24,7 +23,7 @@ def fetch_openai_response(prompt, response_format=None):
 def generate():
     with open("problem_statement.txt", "r", encoding="utf-8") as f:
         problem_statement = f.read()
-    
+
     if not problem_statement.strip():
         e = "Error: empty problem statement file"
         print(e)
