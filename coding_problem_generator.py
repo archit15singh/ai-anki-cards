@@ -143,6 +143,6 @@ def create_flashcard(deck_name, front, back, tags, api_url="http://localhost:876
 
 
 if __name__ == "__main__":
-    deck_name = "coding problems"
+    deck_name = "phase 1"
     rephrased_question, explanation, tags = generate()
     create_flashcard(deck_name, front=rephrased_question, back=explanation, tags=tags)
